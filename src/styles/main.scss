@@ -1,0 +1,26 @@
+@import "utils/+.scss";
+@import "components/+.scss";
+
+
+html {
+  font-family: var(--font);
+  font-weight: 400;
+  color:var(--c-black);
+  font-size: var(--font-size);
+  min-width: 375px;
+  min-height: 100vh;
+}
+
+body, #app {
+  background: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+}
+
+#app {
+
+}

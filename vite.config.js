@@ -1,21 +1,14 @@
 // https://vituum.dev/guide/
 import vituum from 'vituum'
 
-// https://github.com/vituum/vite-plugin-posthtml
-import posthtml from '@vituum/vite-plugin-posthtml'
+// https://github.com/vituum/vite-plugin-pug
+import pug from '@vituum/vite-plugin-pug'
 
 // https://github.com/vnphanquang/vite-plugin-beautify/
 import beautify from 'vite-plugin-beautify';
 
 // https://github.com/FatehAK/vite-plugin-image-optimizer
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-
-// https://htmlnano.netlify.app/
-import htmlnano from 'htmlnano'
-
-// https://github.com/jonathantneal/posthtml-lorem
-import posthtmlLorem from 'posthtml-lorem'
-
 
 
 export default {
@@ -29,34 +22,8 @@ export default {
       }
     }),
 
-    posthtml({
-      root: './src',
-      plugins: [
-        htmlnano({
-          minifySvg: {
-            plugins: [
-              {
-                name: 'preset-default',
-                params: {
-                  overrides: {
-                    convertColors: {
-                      currentColor: true,
-                    },
-                    removeViewBox: false,
-                    removeUselessStrokeAndFill: true,
-                  },
-                },
-              }
-            ]
-          },
-          minifyCss: false,
-          minifyJs: false,
-          collapseWhitespace: 'all',
-          deduplicateAttributeValues: true,
-          collapseBooleanAttributes: true
-        }),
-        posthtmlLorem(),
-      ]
+    pug({
+      root: './src'
     }),
 
     beautify({
@@ -87,7 +54,7 @@ export default {
     }),
 
     ViteImageOptimizer({
-      test: /\.(jpe?g|png|webp)$/i,
+      test: /\.(jpe?g|png|webp|svg)$/i,
       logStats: true,
       ansiColors: true,
       png: {
@@ -102,11 +69,26 @@ export default {
       webp: {
         lossless: true,
       },
+      svg: {
+        multipass: true,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+                removeUselessStrokeAndFill: true,
+              },
+            },
+          }
+        ]
+      }
     }),
-
-
   ],
+
+
   build: {
+    assetsInlineLimit: 0,
     cssMinify: false,
     rollupOptions: {
       output: {

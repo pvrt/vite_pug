@@ -21,6 +21,19 @@ body, #app {
   flex-direction:column;
 }
 
-#app {
 
+
+
+
+
+// REMOVE
+.demo {
+  color:blue;
+
+  img {
+    width: 40px;
+  }
+  svg {
+    width: 70px;
+  }
 }

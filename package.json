@@ -2,9 +2,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "svgo -f ./src/assets/svg -o ./src/assets/svg && vite",
-    "build": "svgo -f ./src/assets/svg -o ./src/assets/svg && vite build",
-    "preview": "vite preview"
+    "zip": "zip -r \"./${PWD##*/}.zip\" \"./\" -x \"./node_modules/*\" \"./${PWD##*/}.zip\" \"./.git/*\" \"**/.DS_Store\" \".DS_Store\"",
+    "minify_svg": "svgo -f ./src/assets/svg -o ./src/assets/svg",
+    "dev": "pnpm run minify_svg && vite",
+    "build": "pnpm run minify_svg && vite build",
+    "preview": "vite preview",
+    "release": "pnpm run build && pnpm run zip"
   },
   "devDependencies": {
     "@vituum/vite-plugin-pug": "^1.1.0",

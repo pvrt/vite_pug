@@ -1,3 +1,6 @@
+import path from 'path';
+import fs from 'fs';
+
 // https://vituum.dev/guide/
 import vituum from 'vituum'
 
@@ -7,8 +10,14 @@ import pug from '@vituum/vite-plugin-pug'
 // https://github.com/vnphanquang/vite-plugin-beautify/
 import beautify from 'vite-plugin-beautify';
 
+// https://github.com/vituum/vite-plugin-postcss
+import postcss from '@vituum/vite-plugin-postcss'
+
 // https://github.com/FatehAK/vite-plugin-image-optimizer
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+
+// https://github.com/atlowChemi/vite-svg-2-webfont
+import viteSvgToWebfont from 'vite-svg-2-webfont';
 
 
 export default {
@@ -21,6 +30,8 @@ export default {
         }
       }
     }),
+
+    postcss(),
 
     pug({
       root: './src'
@@ -84,6 +95,28 @@ export default {
         ]
       }
     }),
+
+    viteSvgToWebfont({
+      context: path.resolve(__dirname, 'src', 'assets', 'icons'),
+      inline: true,
+      fontName: 'icons',
+    }),
+
+    {
+      closeBundle: async () => {
+        await fs.readdir('./dist/js/', (err, files) => {
+          if (err) {
+            console.log(err);
+          }
+          files.forEach(file => {
+            const fileDir = path.join('./dist/js/', file);
+            if (file !== 'main.js') {
+              fs.unlinkSync(fileDir);
+            }
+          });
+        });
+      }
+    }
   ],
 
 
@@ -93,7 +126,7 @@ export default {
     rollupOptions: {
       output: {
         entryFileNames: `js/[name].js`,
-        chunkFileNames: `js/[name].js`,
+        manualChunks: () => '',
         assetFileNames: (assetInfo) => {
           var info = assetInfo.name.split(".");
           var extType = info[info.length - 1];
@@ -106,7 +139,7 @@ export default {
           }
           return `${extType}/[name].[ext]`;
         },
-      }
+      },
     }
   },
   server: {

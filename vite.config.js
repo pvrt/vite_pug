@@ -87,8 +87,7 @@ export default {
             name: 'preset-default',
             params: {
               overrides: {
-                removeViewBox: false,
-                removeUselessStrokeAndFill: true,
+                removeViewBox: false
               },
             },
           }

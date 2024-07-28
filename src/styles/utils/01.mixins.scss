@@ -1,29 +1,19 @@
-// ---------------------------------------
+//-----------------------------
 // Font Face
-// ---------------------------------------
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $full: false ) {
+//-----------------------------
+@mixin font-face($font-family, $weight: normal, $file-path) {
   @font-face {
     font-family: $font-family;
     font-weight: $weight;
-    font-style: $style;
-
-    @if $full == true {
-      src: url('#{$file-path}.eot');
-      src: url('#{$file-path}.eot?#iefix')          format('embedded-opentype'),
-           url('#{$file-path}.woff')                format('woff'),
-           url('#{$file-path}.woff2')               format('woff2'),
-           url('#{$file-path}.ttf')                 format('truetype'),
-           url('#{$file-path}.svg#webfont')         format('svg');
-    } @else {
-      src: url('#{$file-path}.woff')                format('woff'),
-           url('#{$file-path}.woff2')               format('woff2'),
-    }
+    font-style: normal;
+    font-display: swap;
+    src: url('#{$file-path}.woff') format('woff'), url('#{$file-path}.woff2') format('woff2');
   }
 }
 
-// ---------------------------------------
+//-----------------------------
 // Placeholder
-// ---------------------------------------
+//-----------------------------
 @mixin optional-at-root($sel) {
   @at-root #{if(not &, $sel, selector-append(&, $sel))} {
     @content;
@@ -52,9 +42,9 @@
   }
 }
 
-// ---------------------------------------
+//-----------------------------
 // Selection
-// ---------------------------------------
+//-----------------------------
 @mixin selection {
   @include optional-at-root('::selection') {
     @content;
@@ -64,39 +54,54 @@
   }
 }
 
-// ---------------------------------------
+//-----------------------------
 // Scrollbar
-// ---------------------------------------
-@mixin scrollbar($size: 8px, $minlength: 30px, $track-color: #eee, $color: rgba(0,0,0,.2), $hover-color: rgba(0,0,0,.3), $active-color: rgba(0,0,0,.5)) {
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  scrollbar-width: thin;
-  scrollbar-color: $color $track-color;
+//-----------------------------
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
 
   &::-webkit-scrollbar {
+    width:  $size;
     height: $size;
-    width: $size;
   }
-  &::-webkit-scrollbar-track {
-    background-color: $track-color;
-    border-radius: 10px;
-  }
+
   &::-webkit-scrollbar-thumb {
-    background-color: $color;
-    border-radius: 10px;
-    cursor: pointer;
+    background: $foreground-color;
   }
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: $hover-color;
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
   }
-  &::-webkit-scrollbar-thumb:active {
-    background-color: $active-color;
+
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
   }
-  &::-webkit-scrollbar-thumb:vertical {
-    min-height: $minlength;
-  }
-  &::-webkit-scrollbar-thumb:horizontal {
-    min-width: $minlength;
+}
+
+
+//-----------------------------
+// Vertical and horizontal padding mixin
+//-----------------------------
+@mixin hpadding($value) {
+  padding-left:$value;
+  padding-right:$value;
+}
+
+
+@mixin vpadding($value) {
+  padding-top:$value;
+  padding-bottom:$value;
+}
+
+//-----------------------------
+// Links animated underline
+//-----------------------------
+@mixin underline($color) {
+  text-decoration: none;
+  background: linear-gradient($color, $color) no-repeat 0% 90% / 0px 1px;
+  transition: all .3s;
+
+  &:hover {
+    background-size: 100% 1px;
   }
 }

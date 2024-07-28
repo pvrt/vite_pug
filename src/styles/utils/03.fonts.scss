@@ -1,3 +1,3 @@
-@include font-face("Onest", "/src/assets/fonts/Onest-Regular", 400, normal);
-@include font-face("Onest", "/src/assets/fonts/Onest-Medium", 500, normal);
-@include font-face("Onest", "/src/assets/fonts/Onest-Bold", 700, normal);
+@include font-face("Onest", 400, "/src/assets/fonts/Onest-Regular");
+@include font-face("Onest", 500, "/src/assets/fonts/Onest-Medium");
+@include font-face("Onest", 700, "/src/assets/fonts/Onest-Bold");

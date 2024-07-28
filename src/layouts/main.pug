@@ -3,17 +3,28 @@ html
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
-    meta(content='#232328' name='msapplication-TileColor')
-    meta(content='#232328' name='msapplication-navbutton-color')
-    meta(content='#232328' name='theme-color')
-    meta(content='#232328' name='apple-mobile-web-app-status-bar-style')
-    title=title
-    link(href='/src/assets/images/favicon.png' rel='shortcut icon' type='image/png')
+
+    title Title
+    meta(name="description" content="description")
+
+    meta(property="og:title" content="Title")
+    meta(property="og:type" content="website")
+    meta(property="og:url" content="https://www.example.com")
+    meta(property="og:description" content="description")
+    meta(property="og:image" content="/src/assets/images/logo.png")
+
+    meta(content="#232328" name="msapplication-TileColor")
+    meta(content="#232328" name="msapplication-navbutton-color")
+    meta(content="#232328" name="theme-color")
+    meta(content="#232328" name="apple-mobile-web-app-status-bar-style")
+
+    //- link(href="/src/assets/images/favicon.svg" rel="icon" type="image/svg+xml")
+    link(href="/src/assets/images/favicon.png" rel="shortcut icon" type="image/png")
     link(rel="stylesheet" href="/src/styles/main.scss")
 
   body
-    #app
-      include ../components/header
+    include ../components/header
+    main.main
       block page
 
-    script(type='module' src='/src/scripts/app.js')
+    script(type="module" src="/src/scripts/app.js")

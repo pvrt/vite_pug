@@ -14,6 +14,10 @@
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
 }
+body {
+  padding:0;
+  margin:0;
+}
 a, button {
   cursor: revert;
 }
@@ -44,7 +48,7 @@ meter {
 ::placeholder {
   color: unset;
 }
-:where([hidden]) {
+:where([hidden]), [x-cloak] {
   display: none;
 }
 :where([contenteditable]:not([contenteditable="false"])) {
@@ -54,7 +58,12 @@ meter {
   -webkit-line-break: after-white-space;
   -webkit-user-select: auto;
 }
-
 :where([draggable="true"]) {
   -webkit-user-drag: element;
+}
+[x-cloak] {
+  display:none !important;
+}
+.icon {
+  letter-spacing:0 !important;
 }

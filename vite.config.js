@@ -109,7 +109,7 @@ export default {
           }
           files.forEach(file => {
             const fileDir = path.join('./dist/js/', file);
-            if (file !== 'main.js') {
+            if (file !== 'bundle.js') {
               fs.unlinkSync(fileDir);
             }
           });
@@ -124,7 +124,7 @@ export default {
     cssMinify: false,
     rollupOptions: {
       output: {
-        entryFileNames: `js/[name].js`,
+        entryFileNames: `js/bundle.js`,
         manualChunks: () => '',
         assetFileNames: (assetInfo) => {
           var info = assetInfo.name.split(".");

@@ -11,3 +11,7 @@ document.addEventListener('alpine:init', () => {
     nav: false,
   }))
 })
+
+window.Alpine = Alpine
+Alpine.start()
+

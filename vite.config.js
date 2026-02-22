@@ -99,6 +99,7 @@ export default {
       context: path.resolve(__dirname, 'src', 'assets', 'icons'),
       inline: true,
       fontName: 'icons',
+      types: 'woff'
     }),
 
     {

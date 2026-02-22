@@ -4,7 +4,7 @@
   "scripts": {
     "zip": "zip -r \"./${PWD##*/}.zip\" ./ -x \"./node_modules/*\" \"./${PWD##*/}.zip\" \"./.git/*\" \"**/.DS_Store\" \".DS_Store\"",
     "minify_svg": "svgo -f ./src/assets/icons -o ./src/assets/icons",
-    "dev": "pnpm run minify_svg && vite",
+    "dev": "pnpm run minify_svg && vite --host",
     "build": "pnpm run minify_svg && vite build",
     "preview": "vite preview",
     "release": "pnpm run build && pnpm run zip"
@@ -12,17 +12,17 @@
   "devDependencies": {
     "@vituum/vite-plugin-postcss": "^1.1.0",
     "@vituum/vite-plugin-pug": "^1.1.0",
-    "sass": "^1.71.1",
-    "sharp": "^0.33.2",
-    "svgo": "^3.2.0",
-    "vite": "^5.1.4",
+    "sass": "1.58.0",
+    "sharp": "^0.33.5",
+    "svgo": "^3.3.2",
+    "vite": "^6.0.3",
     "vite-plugin-beautify": "^1.0.0",
-    "vite-plugin-image-optimizer": "^1.1.7",
-    "vite-svg-2-webfont": "^3.1.0",
-    "vituum": "^1.1.0"
+    "vite-plugin-image-optimizer": "^1.1.8",
+    "vite-svg-2-webfont": "^3.4.0",
+    "vituum": "github:pvrt/vituum"
   },
   "dependencies": {
-    "alpinejs": "*"
+    "alpinejs": "^3.14.7",
   },
   "browserslist": [
     "defaults"

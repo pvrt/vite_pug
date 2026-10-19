@@ -1,5 +1,21 @@
 {
-  "version": "0.0.0",
+  "name": "vite-pug-template",
+  "version": "1.0.0",
+  "description": "Fast static site starter template powered by Vite, Vituum, Pug, SCSS, and Alpine.js",
+  "author": "pvrt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvrt/vite_pug.git"
+  },
+  "keywords": [
+    "vite",
+    "pug",
+    "vituum",
+    "scss",
+    "alpinejs",
+    "template"
+  ],
   "type": "module",
   "scripts": {
     "zip": "zip -r \"./${PWD##*/}.zip\" ./ -x \"./node_modules/*\" \"./${PWD##*/}.zip\" \"./.git/*\" \"**/.DS_Store\" \".DS_Store\"",
